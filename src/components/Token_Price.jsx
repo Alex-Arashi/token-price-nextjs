@@ -17,8 +17,9 @@ export default function Token_Price () {
         
         let res = await fetch(url, options)
         let json = await res.json()
-        setPrice(json.market_data.current_price.usd)
-        console.log(json.market_data.current_price.usd)
+        let price_formatted = parseFloat(json.market_data.current_price.usd).toFixed(20).replace(/(\.?)0+$/, '')
+        setPrice(price_formatted)
+        console.log(typeof(json.market_data.current_price.usd))
     }
     get_token_price();
 
